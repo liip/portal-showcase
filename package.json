@@ -1,0 +1,21 @@
+{
+  "name": "portal-showcase",
+  "version": "0.0.1",
+  "description": "Showcase for an open data portal using opendata.swiss as a backend",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.liip.ch/jazz/portal-showcase.git"
+  },
+  "keywords": [
+    "opendata",
+    "showcase",
+    "opendata.swiss",
+    "portal"
+  ],
+  "author": "Jazz <jazz@liip.ch>",
+  "license": "MIT"
+}
