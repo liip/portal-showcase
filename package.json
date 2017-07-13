@@ -17,5 +17,11 @@
     "portal"
   ],
   "author": "Jazz <jazz@liip.ch>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ckan": "^0.2.3",
+    "express": "^4.15.3",
+    "lodash": "^4.17.4",
+    "lunr": "^2.1.2"
+  }
 }

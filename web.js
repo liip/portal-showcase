@@ -1,10 +1,23 @@
-var http = require('http');
+var express = require('express');
+var datasets = require('./datasets');
 
-// simple page that acts as the OAuth endpoint
-http.createServer(function(request, response) {
-    response.writeHead(200, {'Content-Type': 'text/html'});
-    response.write('<html><head><title>Portal Showcase</title></head>');
-    response.write('<body><h1>Test heading</h1>');
-    response.write('<p>Test content</p>');
-    response.end('</body></html>');
-}).listen(process.env.PORT || 5000);
+var app = express();
+
+app.use(express.static('public'));
+
+app.get('/datasets', function(req, res) {
+    var q  = 'organization:kanton-basel-stadt OR ';
+        q += 'organization:statistisches-amt-kanton-basel-stadt';
+    datasets.query(q, 'de', function(err, result) {
+        if (err) {
+            res.status(500).send('Error occured when querying for datasets: ' + err);
+            return;
+        }
+        res.json(result);
+    });
+});
+
+var port = process.env.PORT || 5000;
+app.listen(port, function () {
+    console.log('Portal showcase app listening on port ' + port);
+})
