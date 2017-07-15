@@ -47,10 +47,15 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
+                    <form method="GET" action="/">
 					<div class="form-group has-feedback">
-						<input type="text" class="form-control input-lg" placeholder="Suche..." />
+						<input name="q" id="search" type="text" class="form-control input-lg" placeholder="Suche..." />
 						<i class="glyphicon glyphicon-search form-control-feedback"></i>
 					</div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div id="search-result"></div>
                 </div>
             </div>
             <div class="row">

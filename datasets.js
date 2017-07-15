@@ -5,18 +5,13 @@ exports.query = query;
 
 var LANGS = ['de', 'en', 'fr', 'it'];
 
-var datasets;
-
-function query(query, lang, callback) {
-    if (datasets) {
-        callback(null, datasets);
-        return;
-    }
+function query(q, fq, lang, callback) {
     var client = new ckan.Client('https://opendata.swiss');
     client.action(
         'package_search',
         {
-            q: query,
+            q: q,
+            fq: fq,
             rows: 100
         },
         function(err, res) {
@@ -24,7 +19,7 @@ function query(query, lang, callback) {
                 callback(err);
                 return;
             }
-            datasets = res.result;
+            var datasets = res.result;
             // convert multilingual result to monolingual result
             if (!_.isEmpty(datasets.results) && _.includes(LANGS, lang)) {
                 datasets.results = _.map(datasets.results, function(dataset) {
@@ -74,4 +69,3 @@ function getLangValue(obj, lang) {
     }
     return obj;
 }
-

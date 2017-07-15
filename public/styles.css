@@ -14,3 +14,14 @@ body {
 .terms {
     height: 60px;
 }
+
+#search-result {
+    font-size: 32px;
+    text-align: right;
+}
+
+.info-trigger {
+    color: blue;
+    font-size: 19px;
+    top: 4px;
+}
