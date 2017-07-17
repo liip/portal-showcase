@@ -6,7 +6,9 @@ var dataset_template = _.template(
 '<span class="glyphicon glyphicon-new-window"></span>' + 
 '</a></small></h2>' +
 '<p><%= ds.description %></p>' +
-'<div class="keywords"><% _.forEach(ds.keywords, function(keyword) {%><span class="label label-primary"><%- keyword %></span><% })%></div>' +
+'<div class="keywords"><% _.forEach(ds.keywords, function(keyword) {%><span class="label label-primary"><%- keyword %></span> <% })%></div>' +
+'<div class="row">' +
+'<div class="col-md-8">' +
 '<h3>Resourcen</h3><ul class="resources"> <% _.forEach(ds.resources, function(resource) { ' +
 'if (resource.download_url) { %><li><a href="<%= resource.download_url %>">Download</a>&nbsp;<span data-container="body" data-toggle="popover" data-placement="bottom" data-content="<%= resource.description %>" class="glyphicon glyphicon-info-sign info-trigger" aria-hidden="true"></span>' +
 '<% } else { %><li><a href="<%= resource.url %>">Link</a>&nbsp;<span data-container="body" data-toggle="popover" data-placement="bottom" data-content="<%= resource.description %>" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><% } %>' +
