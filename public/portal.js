@@ -1,3 +1,7 @@
+//get parameters
+var searchQuery = getParameterByName('q');
+var simple = getParameterByName('simple');
+
 // Generate HTML of the widget
 var dataset_template = _.template(
 '<section class="well well-lg ckan-dataset">' +
@@ -23,13 +27,12 @@ var dataset_template = _.template(
 '<a href="https://opendata.swiss/de/terms-of-use/">weitere Informationen<span class="glyphicon glyphicon-new-window"></span></a>)</p>' +
 '</div>' +
 '<div class="col-md-6">' +
-'<% if (ds.url.startsWith("https://statabs.github.io")) {%> <div class="intrinsic-container intrinsic-container-4x3"><iframe frameborder="0" src="<%= ds.url %>" class="preview-iframe"></iframe></div> <% } %>' +
+'<% if (ds.url.startsWith("https://statabs.github.io") && !simple) {%> <div class="intrinsic-container intrinsic-container-4x3"><iframe frameborder="0" src="<%= ds.url %>" class="preview-iframe"></iframe></div> <% } %>' +
 '</div>' +
 '</div>' +
 '</section>'
 );
 
-var searchQuery = getParameterByName('q');
 
 $.ajax({
     method: "GET",
