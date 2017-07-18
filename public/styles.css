@@ -17,3 +17,8 @@ body {
     font-size: 19px;
     top: 4px;
 }
+
+.preview-iframe {
+    width: 485px;
+    height: 415px;
+}

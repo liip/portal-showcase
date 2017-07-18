@@ -8,7 +8,7 @@ var dataset_template = _.template(
 '<p><%= ds.description %></p>' +
 '<div class="keywords"><% _.forEach(ds.keywords, function(keyword) {%><span class="label label-primary"><%- keyword %></span> <% })%></div>' +
 '<div class="row">' +
-'<div class="col-md-8">' +
+'<div class="col-md-6">' +
 '<h3>Resourcen</h3><ul class="resources"> <% _.forEach(ds.resources, function(resource) { ' +
 'if (resource.download_url) { %><li><a href="<%= resource.download_url %>">Download</a>&nbsp;<span data-container="body" data-toggle="popover" data-placement="bottom" data-content="<%= resource.description %>" class="glyphicon glyphicon-info-sign info-trigger" aria-hidden="true"></span>' +
 '<% } else { %><li><a href="<%= resource.url %>">Link</a>&nbsp;<span data-container="body" data-toggle="popover" data-placement="bottom" data-content="<%= resource.description %>" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><% } %>' +
@@ -22,8 +22,8 @@ var dataset_template = _.template(
 '<p><img class="terms" src="/terms_open.svg" onerror="this.onerror=null;this.src=\'/terms_open.png\'" alt="Open Data" title="Open Data"> Open Data (' +
 '<a href="https://opendata.swiss/de/terms-of-use/">weitere Informationen<span class="glyphicon glyphicon-new-window"></span></a>)</p>' +
 '</div>' +
-'<div class="col-md-4">' +
-'<table id="data-<%= ds.name %>" class="display" width="100%"></table>' +
+'<div class="col-md-6">' +
+'<% if (ds.url.startsWith("https://statabs.github.io")) {%> <div class="intrinsic-container intrinsic-container-4x3"><iframe frameborder="0" src="<%= ds.url %>" class="preview-iframe"></iframe></div> <% } %>' +
 '</div>' +
 '</div>' +
 '</section>'
