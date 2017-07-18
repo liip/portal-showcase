@@ -7,7 +7,12 @@ app.use(express.static('public'));
 
 app.get('/datasets', function(req, res) {
     var q = req.query.q ? req.query.q : '';
+    var tag = req.query.tag ? req.query.tag : '';
     var fq  = 'organization:("kanton-basel-stadt" OR "statistisches-amt-kanton-basel-stadt")';
+
+    if (tag) {
+        fq += 'keywords_de:' + tag;
+    }
 
     datasets.query(q, fq, 'de', function(err, result) {
         if (err) {

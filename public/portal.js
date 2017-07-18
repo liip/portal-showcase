@@ -1,5 +1,6 @@
 //get parameters
 var searchQuery = getParameterByName('q');
+var tag = getParameterByName('tag');
 var simple = getParameterByName('simple');
 
 // Generate HTML of the widget
@@ -10,7 +11,7 @@ var dataset_template = _.template(
 '<span class="glyphicon glyphicon-new-window"></span>' + 
 '</a></small></h2>' +
 '<p><%= ds.description %></p>' +
-'<div class="keywords"><% _.forEach(ds.keywords, function(keyword) {%><span class="label label-primary"><%- keyword %></span> <% })%></div>' +
+'<div class="keywords"><% _.forEach(ds.keywords, function(keyword) {%><a href="/?tag=<%= keyword %>"><span class="label label-primary"><%- keyword %></span></a> <% })%></div>' +
 '<div class="row">' +
 '<div class="col-md-6">' +
 '<h3>Resourcen</h3><ul class="resources"> <% _.forEach(ds.resources, function(resource) { ' +
@@ -36,7 +37,7 @@ var dataset_template = _.template(
 
 $.ajax({
     method: "GET",
-    url: "/datasets?q=" + (searchQuery ? searchQuery : ''),
+    url: "/datasets?q=" + (searchQuery ? searchQuery : '') + '&tag=' + (tag ? tag : ''),
 }).done(function(result) {
     var parts = _.map(result.results, function(dataset) {
         return dataset_template({ds: dataset});
@@ -46,6 +47,11 @@ $.ajax({
 
     //reset search term in input field
     $('#search').val(searchQuery);
+
+    //set tag
+    if (tag) {
+        $('#tag-filter').html('<a href="/" title="Schlagwort-Filter entfernen"><span class="label label-primary">' + tag + ' <span class="glyphicon glyphicon-remove"></span></span></a>');
+    }
 
     //result count
     if (result.count === 1) {
